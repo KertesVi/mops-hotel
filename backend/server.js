@@ -25,10 +25,11 @@ async function startServer() {
       process.exit(1);  // Exit process if there's a connection error
     }
   }
+  startServer();
   
 
 app.get('/', (req, res) => {
     res.send('Hello World!');
   });
-  // Start the server
-  startServer();
+
+  

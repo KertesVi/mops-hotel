@@ -9,10 +9,15 @@ body, html {
 .bgimg-1 {
   background-position: center;
   background-size: cover;
-  background-image: url("./assets/images/jorge-zapata-umd2UyYjh3Q-unsplash.jpg");
+  background-image: url("./assets/images/felipe-bustillo-vN24f5_zpiA-unsplash.jpg");
   min-height: 100%;
 }
 
 .w3-bar .w3-button {
   padding: 16px;
+}
+
+.curve {
+  width: 100%;
+  height: 100%;
 }

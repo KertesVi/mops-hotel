@@ -1,35 +1,25 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import './App.css';
+import { Link } from 'react-router-dom';
+import "./index.css"
 
 function App() {
-  const [count, setCount] = useState(0)
-
   return (
     <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
+      <header className="bgimg-1 w3-display-container w3-grayscale-min" id="home">
+        <div>
+          <span className="w3-jumbo w3-hide-small">Nálunk kedvenced szeretetteljes törődést kap,<br/> míg te nyugodtan pihenhetsz – mintha csak otthon lenne!</span>
+      
+          <p>
+            <Link to="/booking" className="w3-button w3-white w3-padding-large w3-large w3-margin-top w3-opacity w3-hover-opacity-off">
+              Időpont keresés
+            </Link>
+          </p>
+        </div>
+       
+      </header>
     </>
-  )
+  );
 }
 
-export default App
+export default App;
+
