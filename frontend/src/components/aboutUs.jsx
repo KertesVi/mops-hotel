@@ -3,13 +3,11 @@ import "./aboutUs.css";
 export default function AboutUs() {
   return (
     <>
-      <div id="circle-shape-example">
-        <img
-          height="100%"
-          src="./assets/images/felipe-bustillo-vN24f5_zpiA-unsplash.jpg"
-          alt="aboutUs"
-          className="curve"
-        />
+      <div
+        className="w3-container"
+        style={{ padding: "128px 16px" }}
+        id="aboutUs"
+      >
         <h1>Üdvözlünk nálunk, ahol a mopszok otthon érzik magukat!</h1>
         <p>
           Mi egy természet kedvelő 4 fős család vagyunk, akik szívügyüknek
@@ -30,6 +28,12 @@ export default function AboutUs() {
           Keress minket bizalommal, ha egy biztonságos, szerető helyet keresel
           kedvenced számára!
         </p>
+      </div>
+      <div className="w3-container">
+        <img 
+          src="C:\Users\Viki\Desktop\codecool\PET project\mops-hotel\frontend\src\assets\images\felipe-bustillo-vN24f5_zpiA-unsplash.jpg"
+          alt="AboutUs"
+        />
       </div>
     </>
   );
