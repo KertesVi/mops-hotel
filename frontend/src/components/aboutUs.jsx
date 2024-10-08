@@ -8,12 +8,12 @@ export default function AboutUs() {
         style={{ padding: "128px 16px" }}
         id="aboutUs"
       >
-        <h1>Üdvözlünk nálunk, ahol a mopszok otthon érzik magukat!</h1>
-        <p>
+        <h1 className="w3-jumbo w3-hide-small">Üdvözlet nálunk, ahol a mopszok otthon érzik magukat!</h1>
+        <p className="w3-large">
           Mi egy természet kedvelő 4 fős család vagyunk, akik szívügyüknek
           tekintik az állatok szeretetét és gondozását. Családunk tagja egy
           mopsz kutyus is, akivel már hosszú évek óta élvezzük a közös sétákat,
-          természetjárást és a nyugodt otthoni pillanatokat. <br />
+          természetjárást és a nyugodt otthoni pillanatokat. <br /> <br />
           Ha épp nyaralás előtt állsz, vagy szükséged van egy rövidebb időre
           olyan helyre, ahol biztos lehetsz abban, hogy kedvenced szeretetteljes
           környezetben van, akkor nálunk jó helyen jársz. Kizárólag mopsz
@@ -24,7 +24,7 @@ export default function AboutUs() {
           megkapja a neki járó figyelmet, gondoskodást és persze a sok-sok
           simogatást. Nálunk otthonos, családias légkör várja mopszodat, napi
           sétákkal és természetközeli élményekkel, hogy te is nyugodt szívvel
-          pihenhess. <br />
+          pihenhess. <br /> <br />
           Keress minket bizalommal, ha egy biztonságos, szerető helyet keresel
           kedvenced számára!
         </p>

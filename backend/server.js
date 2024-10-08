@@ -16,6 +16,40 @@ const port = process.env.PORT || 5000;
 const mongoURI = process.env.MONGO_URI;
 const emailTo = process.env.EMAIL;
 const password = process.env.PASSWORD;
+const TOKEN = process.env.API_KEY;
+
+const transporter = nodemailer.createTransport({
+  host: "sandbox.smtp.mailtrap.io",
+  port: 2525,
+  secure: false, // true for port 465, false for other ports
+  auth: {
+    user: "4ed70de328bc9a",
+    pass: "832bc1adc47206",
+  },
+});
+
+const sender = {
+  address: "kerteszviki@gmail.com",
+  name: "Mailtrap Test",
+};
+const recipients = [
+  "mopshotel@gmail.com",
+];
+
+transporter
+  .sendMail({
+    from: sender,
+    to: recipients,
+    subject: "You are awesome!",
+    text: "Congrats for sending test email with Mailtrap!",
+    category: "Integration Test",
+    sandbox: true
+  })
+  .then(console.log, console.error);
+
+
+
+
 
 async function startServer() {
     try {
@@ -32,49 +66,5 @@ async function startServer() {
       process.exit(1);  // Exit process if there's a connection error
     }
   }
-  startServer();
-  
-  const transporter = nodemailer.createTransport({
-    service: 'yahoo', // Or your email provider
-    auth: {
-      user: emailTo, // Replace with your email
-      pass: password,  // Replace with your email password (use app password if 2FA is enabled)
-    },
-    debug: true,
-  });
-  
-  const sendMail = async (mailOptions) => {
-    try {
-      const info = await transporter.sendMail(mailOptions);
-      console.log('Email sent:', info.response);
-    } catch (error) {
-      console.error('Error sending email:', error);
-    }
-  };
-
-
-  app.post('/send-email', (req, res) => {
-    const { name, email, subject, message } = req.body;
-  
-    const mailOptions = {
-      from: email,
-      to: emailTo,  // Your email to receive messages
-      subject: `New message from ${name}: ${subject}`,
-      text: message,
-    };
-  
-    transporter.sendMail(mailOptions, (error, info) => {
-      if (error) {
-        console.error('Error sending email: ', error);  // This will show the error in your server logs
-        return res.status(500).json({ error: 'Failed to send email. Please try again later.' });
-      } else {
-        console.log('Email sent: ' + info.response);
-        res.status(200).json({ message: 'Email sent successfully.' });
-      }
-    });
-  });
-  
-app.get('/', (req, res) => {
-    res.send('Hello World!');
-  });
-
+startServer();
+   
