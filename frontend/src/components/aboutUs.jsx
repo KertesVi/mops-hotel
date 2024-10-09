@@ -4,14 +4,19 @@ export default function AboutUs() {
   return (
     <>
       <div
-        className="w3-container"
-        style={{ padding: "128px 16px" }}
+        className="w3-container w3-light-grey"
         id="aboutUs"
       >
-        <h1 className="w3-jumbo w3-hide-small">Üdvözlet nálunk, ahol a mopszok otthon érzik magukat!</h1>
-        <p className="w3-large">
+        <div className="w3-center">
+          <h1 className="w3-jumbo w3-hide-small">Üdvözlet nálunk, ahol a mopszok otthon érzik magukat!</h1>
+        </div>
+
+        <div className="flex-container">
+
+          <div className="flex-item-text">
+            <p className="w3-xlarge">
           Mi egy természet kedvelő 4 fős család vagyunk, akik szívügyüknek
-          tekintik az állatok szeretetét és gondozását. Családunk tagja egy
+          tekintik az állatok szeretetét és gondozását. Családunk tagja egy fekete
           mopsz kutyus is, akivel már hosszú évek óta élvezzük a közös sétákat,
           természetjárást és a nyugodt otthoni pillanatokat. <br /> <br />
           Ha épp nyaralás előtt állsz, vagy szükséged van egy rövidebb időre
@@ -27,13 +32,16 @@ export default function AboutUs() {
           pihenhess. <br /> <br />
           Keress minket bizalommal, ha egy biztonságos, szerető helyet keresel
           kedvenced számára!
-        </p>
-      </div>
-      <div className="w3-container">
-        <img 
-          src="C:\Users\Viki\Desktop\codecool\PET project\mops-hotel\frontend\src\assets\images\felipe-bustillo-vN24f5_zpiA-unsplash.jpg"
-          alt="AboutUs"
-        />
+          </p>
+          </div>
+
+          <div className="flex-item-image">
+            <img 
+              src='./assets/images/felipe-bustillo-vN24f5_zpiA-unsplash.jpg'
+              alt="AboutUs"
+            />
+          </div>
+        </div>
       </div>
     </>
   );
