@@ -23,7 +23,6 @@ app.post("/api/contactForm", async (req, res) => {
   try {
     const newFormData = new FormData(formData);
     const savedData = await newFormData.save();
-    await sendEmail(savedData);
     res.status(201).json(savedData); 
   } catch (error) {
     console.error("Error saving form data:", error);

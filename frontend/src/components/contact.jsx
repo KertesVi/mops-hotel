@@ -34,12 +34,11 @@ function Contact() {
     });
 
     if (response.ok) {
-        const data = await response.json();
-        setFeedbackMessage("Üzenet sikeresen elküldve!"); // Success message
+        setFeedbackMessage("Üzenet sikeresen elküldve!"); 
         setFormData({ name: "", email: "", subject: "", message: "" });
         setTimeout(() => setFeedbackMessage(""), 5000); 
       } else {
-        setFeedbackMessage("Hiba történt az üzenet küldésekor."); // Error message
+        setFeedbackMessage("Hiba történt az üzenet küldésekor."); 
       }
     } catch (error) {
       console.error("Error:", error);
