@@ -9,6 +9,7 @@ function Contact() {
   });
 
   const [isLoading, setIsLoading] = useState(false);
+  const [feedbackMessage, setFeedbackMessage] = useState(""); 
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -21,36 +22,36 @@ function Contact() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-
-    const url = "https://send.api.mailtrap.io/api/send";
-    const options = {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        Accept: "application/json",
-        "Api-Token": "demomailtrap.com token 1727857468",
-      },
-      body: '{"to":[{"email":"mopshotel@yahoo.com","name":"Kertesz Viki"}], \
-      "from":{"email":{formData.email},"name":{formData.name},\
-      "attachments":[{"content":"PCFET0NUWVBFIGh0bWw+CjxodG1sIGxhbmc9ImVuIj4KCiAgICA8aGVhZD4KICAgICAgICA8bWV0YSBjaGFyc2V0PSJVVEYtOCI+CiAgICAgICAgPG1ldGEgaHR0cC1lcXVpdj0iWC1VQS1Db21wYXRpYmxlIiBjb250ZW50PSJJRT1lZGdlIj4KICAgICAgICA8bWV0YSBuYW1lPSJ2aWV3cG9ydCIgY29udGVudD0id2lkdGg9ZGV2aWNlLXdpZHRoLCBpbml0aWFsLXNjYWxlPTEuMCI+CiAgICAgICAgPHRpdGxlPkRvY3VtZW50PC90aXRsZT4KICAgIDwvaGVhZD4KCiAgICA8Ym9keT4KCiAgICA8L2JvZHk+Cgo8L2h0bWw+Cg==",\
-      "filename":"index.html",\
-      "type":"text/html","disposition":"attachment"}],\
-      "custom_variables":{"user_id":"45982","batch_id":"PSJ-12"},\
-      "headers":{"X-Message-Source":"dev.mydomain.com"},\
-      "subject":"Your Example Order Confirmation",\
-      "text":"Congratulations on your order no. 1234",\
-      "category":"API Test"}',
-    };
-
+    setFeedbackMessage("");
+  
     try {
-      const response = await fetch(url, options);
-      const data = await response.json();
-      console.log(data);
+    const response = await fetch('/api/contactForm', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json', 
+      },
+      body: JSON.stringify(formData), 
+    });
+
+    if (response.ok) {
+        const data = await response.json();
+        setFeedbackMessage("Üzenet sikeresen elküldve!"); // Success message
+        setFormData({ name: "", email: "", subject: "", message: "" });
+        setTimeout(() => setFeedbackMessage(""), 5000); 
+      } else {
+        setFeedbackMessage("Hiba történt az üzenet küldésekor."); // Error message
+      }
     } catch (error) {
-      console.error(error);
+      console.error("Error:", error);
+      setFeedbackMessage("Hiba történt az üzenet küldésekor."); 
+    } finally {
+      setIsLoading(false); 
     }
   };
+  
+
   return (
+
     <div
       className="w3-container w3-light-grey"
       style={{ padding: "128px 16px" }}
@@ -71,14 +72,14 @@ function Contact() {
         </p>
         <p>
           <i className="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i>{" "}
-          Email: mopshotel@yahoo.com
+          mopshotel@yahoo.com
         </p>
         <br />
-        <p className="w3 w3-large">Küld egy üzenetet:</p>
+        {feedbackMessage === "" ? (
+          <>
+          <p className="w3 w3-large">Küld egy üzenetet:</p>
         <form
           id="contact-form"
-          action="sendemail.php"
-          method="POST"
           onSubmit={handleSubmit}
         >
           <p>
@@ -129,14 +130,18 @@ function Contact() {
           </p>
           <p>
             <button
-             className="w3-button w3-dark-grey w3-large" 
+              className="w3-button w3-dark-grey w3-large"
               type="submit"
               disabled={isLoading}
             >
-              {isLoading ? "Küldés..." : "Küldés"}
+              {isLoading ? "Az üzenet küldés alatt..." : "Küldés"}
             </button>
           </p>
         </form>
+        </>
+        ):(
+            <div className="w3-center w3-green">{feedbackMessage}</div>
+        )}
       </div>
     </div>
   );
