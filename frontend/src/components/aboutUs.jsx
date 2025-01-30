@@ -31,7 +31,7 @@ export default function AboutUs() {
           sétákkal és természetközeli élményekkel, hogy te is nyugodt szívvel
           pihenhess. <br /> <br />
           Keress minket bizalommal, ha egy biztonságos, szerető helyet keresel
-          kedvenced számára!
+          kedvenced számára pár napra, vagy akár 1-2 hetes időtartamra!
           </p>
           </div>
 
