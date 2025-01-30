@@ -17,7 +17,7 @@ export default function AboutUs() {
             <p className="w3-xlarge">
           Mi egy természet kedvelő 4 fős család vagyunk, akik szívügyüknek
           tekintik az állatok szeretetét és gondozását. Családunk tagja egy fekete
-          mopsz kutyus is, akivel már hosszú évek óta élvezzük a közös sétákat,
+          mopsz kutyus is, akivel már 10 év élvezzük a közös sétákat,
           természetjárást és a nyugodt otthoni pillanatokat. <br /> <br />
           Ha épp nyaralás előtt állsz, vagy szükséged van egy rövidebb időre
           olyan helyre, ahol biztos lehetsz abban, hogy kedvenced szeretetteljes

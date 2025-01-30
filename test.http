@@ -1,9 +1,17 @@
 
-POST http://localhost:5000/api/contactForm
+POST http://localhost:5000/api/bookingForm
 Content-Type: application/json
+
 {
-  "name": "HR",
-  "email": "dkljfh",
-  "subject": "Budapest",
-  "message": "dlkjf"
+   "ownerName": "",
+   "phone": "",
+   "email": "",
+   "petName1": "",
+   "petName2": "",
+   "petAge1": "",
+   "petAge2": "",
+   "numberOfGuests": "1",
+   "checkIn": "",
+   "checkOut": ""
 }
+

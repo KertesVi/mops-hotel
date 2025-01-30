@@ -53,7 +53,7 @@ function Contact() {
 
     <div
       className="w3-container w3-light-grey"
-      style={{ padding: "128px 16px" }}
+      style={{ padding: "128px 100px", minHeight: "100vh"  }}
       id="contact"
     >
       <h3 className="w3-center">Kapcsolat</h3>
@@ -67,15 +67,21 @@ function Contact() {
         </p>
         <p>
           <i className="fa fa-phone fa-fw w3-xxlarge w3-margin-right"></i> +36
-          70 886-1300
+          70 886-1365
         </p>
         <p>
-          <i className="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i>{" "}
-          mopshotel@yahoo.com
-        </p>
+  <i className="fa fa-envelope fa-fw w3-xxlarge w3-margin-right"></i>{" "}
+    <a href="mailto:mopshotel@yahoo.com?subject=Szabad helyek érdeklődés&body=Tisztelt Szállásadó,%0D%0A%0D%0AÉrdeklődni szeretnénk, hogy az alábbi napokon van-e szabad hely:%0D%0A[DÁTUMOK].%0D%0A%0D%0AVálaszukat előre is köszönjük!%0D%0AÜdvözlettel,%0D%0A[NÉV]">
+      mopshotel@yahoo.com
+    </a>
+
+</p>
+        </div>
+        <div>
         <br />
         {feedbackMessage === "" ? (
           <>
+          <div className="w3-display-middle w3-padding w3-col l6 m8 w3-card">
           <p className="w3 w3-large">Küld egy üzenetet:</p>
         <form
           id="contact-form"
@@ -137,6 +143,7 @@ function Contact() {
             </button>
           </p>
         </form>
+        </div>
         </>
         ):(
             <div className="w3-center w3-green">{feedbackMessage}</div>
