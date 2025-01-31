@@ -1,7 +1,6 @@
 Mops Hotel
 
-Mops Hotel is a pet-friendly web application where users can send interest for vacancy of the the accommodations for their beloved pets while they are away on holiday or elsewhere.
-The platform ensures that pets receive love, care, and attention as if they were at home.
+Mops Hotel is a pet-friendly web application where users can send interest for vacancy of the accommodations for their beloved pets while they are away on holiday or elsewhere. The platform ensures that pets receive love, care, and attention as if they were at home.
 
 Features
 
@@ -17,11 +16,11 @@ Tech Stack
 
 Frontend: React, React Router, CSS
 
-Backend: NOde.js and Express
+Backend: Node.js and Express
 
 Libraries: FontAwesome, Google Fonts, W3.CSS
 
-Database : Mongo DB
+Database: MongoDB
 
 Installation
 
@@ -81,5 +80,4 @@ We welcome contributions! If you want to contribute, please fork the repository 
 
 Contact
 
-For any inquiries, please contact us at mopshotel@yahoo.com
-
+For any inquiries, please contact us at mopshotel@yahoo.com.
