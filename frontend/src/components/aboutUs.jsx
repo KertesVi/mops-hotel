@@ -7,7 +7,7 @@ export default function AboutUs() {
         className="w3-container w3-light-grey"
         id="aboutUs"
       >
-        <div className="w3-center">
+        <div className="w3-center" >
           <h1 className="w3-jumbo w3-hide-small">Üdvözlet nálunk, ahol a mopszok otthon érzik magukat!</h1>
         </div>
 
@@ -37,7 +37,7 @@ export default function AboutUs() {
 
           <div className="flex-item-image">
             <img 
-              src='./assets/images/felipe-bustillo-vN24f5_zpiA-unsplash.jpg'
+              src='./src/assets/images/felipe-bustillo-vN24f5_zpiA-unsplash.jpg'
               alt="AboutUs"
             />
           </div>

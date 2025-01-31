@@ -7,7 +7,7 @@ import Footer from "./components/footer.jsx";
 import Contact from "./components/contact.jsx";
 import Booking from "./components/booking.jsx";
 import AboutUs from "./components/aboutUs.jsx";
-import './index.css'
+
 
 
 createRoot(document.getElementById("root")).render(

@@ -211,7 +211,7 @@ function Booking() {
 
                 {/* Submit Button */}
                 <button className="w3-button w3-dark-grey" type="submit">
-                  {isLoading ? "Az üzenet küldés alatt..." : "Foglalás"}
+                  {isLoading ? "Az üzenet küldés alatt..." : "Érdeklődés küldése"}
                 </button>
               </form>
             </div>

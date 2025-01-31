@@ -42,7 +42,7 @@ function Contact() {
       }
     } catch (error) {
       console.error("Error:", error);
-      setFeedbackMessage("Hiba történt az üzenet küldésekor. Kérem hívjon minket a +36 70 886-1365 telefonszámon."); 
+      setFeedbackMessage("Server hiba."); 
     } finally {
       setIsLoading(false); 
       setTimeout(() => setFeedbackMessage(""), 5000);
@@ -52,16 +52,12 @@ function Contact() {
 
   return (
 
-    <div
-      className="w3-container w3-light-grey"
-      style={{ padding: "128px 100px", minHeight: "100vh"  }}
-      id="contact"
-    >
-      <h3 className="w3-center">Kapcsolat</h3>
-      <p className="w3-center w3-large">
-        Az alábbi módokon érhetsz el bennünket:
-      </p>
-      <div style={{ marginTop: "48px" }}>
+    <div className="w3-container w3-light-grey" style={{ padding: "64px", minHeight: "100vh" }} id="contact">
+    <h3 className="w3-center">Kapcsolat</h3>
+    <p className="w3-center w3-large">Az alábbi módokon érhetsz el bennünket:</p>
+
+    <div style={{ display: "flex", alignItems: "center", justifyContent: "center", marginTop: "48px", gap: "40px" }}>
+      
         <p>
           <i className="fa fa-map-marker fa-fw w3-xxlarge w3-margin-right"></i>{" "}
           Pilisvörösvár, Pest <a href="https://g.co/kgs/Zr4WbRe">Térkép</a>
