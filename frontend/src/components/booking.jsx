@@ -6,15 +6,15 @@ function Booking() {
   // Define state for each form field
   const [bookingData, setBookingData] = useState({
     ownerName: "",
-    phone: "",
+    phone: null,
     email: "",
     petName1: "",
-    petName2: "",
-    petAge1: "",
-    petAge2: "",
-    numberOfGuests: "1",
-    checkIn: "",
-    checkOut: ""
+    petName2: null,
+    petAge1: null,
+    petAge2: null,
+    numberOfGuests: 1,
+    checkIn: null,
+    checkOut: null
   });
   
   const [isLoading, setIsLoading] = useState(false);
@@ -33,6 +33,7 @@ function Booking() {
     setIsLoading(true);
     setFeedbackMessage("");
 
+    console.log("Booking Data:", bookingData);
     // Send the data to the backend
     try {
       const response = await fetch('/api/bookingForm', {
@@ -45,25 +46,26 @@ function Booking() {
         setFeedbackMessage("Üzenet sikeresen elküldve!");
         setBookingData({
           ownerName: "",
-          phone: "",
+          phone: null,
           email: "",
           petName1: "",
-          petName2: "",
-          petAge1: "",
-          petAge2: "",
-          numberOfGuests: "1",
-          checkIn: "",
-          checkOut: ""
+          petName2: null,
+          petAge1: null,
+          petAge2: null,
+          numberOfGuests: 1,
+          checkIn: null,
+          checkOut: null
         });
-        setTimeout(() => setFeedbackMessage(""), 5000); 
+       
       } else {
         setFeedbackMessage("Hiba történt az üzenet küldésekor."); 
       }
     } catch (error) {
       console.error("Error:", error);
-      setFeedbackMessage("Hiba történt az üzenet küldésekor."); 
+      setFeedbackMessage("Server Hiba"); 
     } finally {
       setIsLoading(false); 
+      setTimeout(() => setFeedbackMessage(""), 5000); 
     }
   };
 
@@ -217,7 +219,11 @@ function Booking() {
               </form>
             </div>
           ) : (
-            <div className="w3-center w3-green">{feedbackMessage}</div>
+            feedbackMessage === "Üzenet sikeresen elküldve!" ? (
+              <div className="w3-center w3-green">{feedbackMessage}</div>
+          ) : (
+              <div className="w3-center w3-orange">{feedbackMessage}</div>
+          )
           )}
         </div>
 

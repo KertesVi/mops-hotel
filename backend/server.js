@@ -3,7 +3,9 @@ import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
 import bodyParser from 'body-parser';
-import bookingData from './db/bookingData.model.js';
+import FormModel from "./db/formData.model.js";
+import BookindModel from './db/bookindData.model.js'; 
+
 
 dotenv.config(); 
 
@@ -21,8 +23,9 @@ app.post("/api/bookingForm", async (req, res) => {
   const bookingData = req.body;
  
   try {
-    const newbookingData = new bookingData(bookingData);
+    const newbookingData = new BookindModel(bookingData);
     const savedData = await newbookingData.save();
+    console.log("Booking Data:", savedData);
     res.status(201).json(savedData); 
   } catch (error) {
     console.error("Error saving form data:", error);
@@ -31,15 +34,15 @@ app.post("/api/bookingForm", async (req, res) => {
 });
 
 app.post("/api/contactForm", async (req, res) => {
-  const bookingData = req.body;
- 
+  const formData = req.body;
+
   try {
-    const newbookingData = new bookingData(bookingData);
-    const savedData = await newbookingData.save();
-    res.status(201).json(savedData); 
+    const newFormData = new FormModel(formData);
+    const savedData = await newFormData.save();
+    res.status(201).json(savedData);
   } catch (error) {
     console.error("Error saving form data:", error);
-    res.status(500).json({ error: 'An error occurred while saving the data' });
+    res.status(500).json({ error: "An error occurred while saving the data" });
   }
 });
 

@@ -34,17 +34,18 @@ function Contact() {
     });
 
     if (response.ok) {
+      console.log("Response:", formData);
         setFeedbackMessage("Üzenet sikeresen elküldve!"); 
         setFormData({ name: "", email: "", subject: "", message: "" });
-        setTimeout(() => setFeedbackMessage(""), 5000); 
       } else {
         setFeedbackMessage("Hiba történt az üzenet küldésekor."); 
       }
     } catch (error) {
       console.error("Error:", error);
-      setFeedbackMessage("Hiba történt az üzenet küldésekor."); 
+      setFeedbackMessage("Server hiba."); 
     } finally {
       setIsLoading(false); 
+      setTimeout(() => setFeedbackMessage(""), 5000);
     }
   };
   
@@ -144,11 +145,16 @@ function Contact() {
           </p>
         </form>
         </div>
-        </>
-        ):(
-            <div className="w3-center w3-green">{feedbackMessage}</div>
-        )}
-      </div>
+    </>
+) : (
+    feedbackMessage === "Üzenet sikeresen elküldve!" ? (
+        <div className="w3-center w3-green">{feedbackMessage}</div>
+    ) : (
+        <div className="w3-center w3-orange">{feedbackMessage}</div>
+    )
+)}
+</div>
+
     </div>
   );
 }

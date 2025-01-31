@@ -1,17 +1,11 @@
 
-POST http://localhost:5000/api/bookingForm
+POST http://localhost:5000/api/contactForm
 Content-Type: application/json
 
 {
-   "ownerName": "",
-   "phone": "",
-   "email": "",
-   "petName1": "",
-   "petName2": "",
-   "petAge1": "",
-   "petAge2": "",
-   "numberOfGuests": "1",
-   "checkIn": "",
-   "checkOut": ""
+   "name": "",
+    "email": "",
+    "subject": "",
+    "message": "",
 }
 
