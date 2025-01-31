@@ -3,7 +3,6 @@ import "./booking.css";
 
 
 function Booking() {
-  // Define state for each form field
   const [bookingData, setBookingData] = useState({
     ownerName: "",
     phone: null,
@@ -27,14 +26,12 @@ function Booking() {
       [name]: value,
     }));
   };
-  // Handle form submission
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setFeedbackMessage("");
 
-    console.log("Booking Data:", bookingData);
-    // Send the data to the backend
     try {
       const response = await fetch('/api/bookingForm', {
         method: 'POST',
@@ -43,7 +40,7 @@ function Booking() {
       });
 
       if (response.ok) {
-        setFeedbackMessage("Üzenet sikeresen elküldve!");
+        setFeedbackMessage("Köszönjük! Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot.");
         setBookingData({
           ownerName: "",
           phone: null,
@@ -58,11 +55,11 @@ function Booking() {
         });
        
       } else {
-        setFeedbackMessage("Hiba történt az üzenet küldésekor."); 
+        setFeedbackMessage("Hiba történt az üzenet küldésekor. Kérem hívjon minket a +36 70 886-1365 telefonszámon."); 
       }
     } catch (error) {
       console.error("Error:", error);
-      setFeedbackMessage("Server Hiba"); 
+      setFeedbackMessage("Hiba történt az üzenet küldésekor. Kérem hívjon minket a +36 70 886-1365 telefonszámon."); 
     } finally {
       setIsLoading(false); 
       setTimeout(() => setFeedbackMessage(""), 5000); 
@@ -219,8 +216,11 @@ function Booking() {
               </form>
             </div>
           ) : (
-            feedbackMessage === "Üzenet sikeresen elküldve!" ? (
-              <div className="w3-center w3-green">{feedbackMessage}</div>
+            feedbackMessage === "Köszönjük! Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot." ? (
+              <div className="w3-center w3-green">{feedbackMessage}<br/> <span className="w3-text-black w3-large w3-bold">
+              A foglalás csak visszaigazolás után érvényes!
+            </span> </div>
+
           ) : (
               <div className="w3-center w3-orange">{feedbackMessage}</div>
           )

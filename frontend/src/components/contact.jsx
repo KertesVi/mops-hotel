@@ -35,14 +35,14 @@ function Contact() {
 
     if (response.ok) {
       console.log("Response:", formData);
-        setFeedbackMessage("Üzenet sikeresen elküldve!"); 
+        setFeedbackMessage("Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot."); 
         setFormData({ name: "", email: "", subject: "", message: "" });
       } else {
-        setFeedbackMessage("Hiba történt az üzenet küldésekor."); 
+        setFeedbackMessage("Hiba történt az üzenet küldésekor. Kérem hívjon minket a +36 70 886-1365 telefonszámon."); 
       }
     } catch (error) {
       console.error("Error:", error);
-      setFeedbackMessage("Server hiba."); 
+      setFeedbackMessage("Hiba történt az üzenet küldésekor. Kérem hívjon minket a +36 70 886-1365 telefonszámon."); 
     } finally {
       setIsLoading(false); 
       setTimeout(() => setFeedbackMessage(""), 5000);
@@ -147,7 +147,7 @@ function Contact() {
         </div>
     </>
 ) : (
-    feedbackMessage === "Üzenet sikeresen elküldve!" ? (
+    feedbackMessage === "Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot." ? (
         <div className="w3-center w3-green">{feedbackMessage}</div>
     ) : (
         <div className="w3-center w3-orange">{feedbackMessage}</div>

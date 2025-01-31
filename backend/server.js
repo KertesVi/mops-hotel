@@ -25,7 +25,6 @@ app.post("/api/bookingForm", async (req, res) => {
   try {
     const newbookingData = new BookindModel(bookingData);
     const savedData = await newbookingData.save();
-    console.log("Booking Data:", savedData);
     res.status(201).json(savedData); 
   } catch (error) {
     console.error("Error saving form data:", error);
