@@ -46,7 +46,7 @@ function App() {
             }}
           >
             <img
-              src="./src/assets/images/mink-mingle-UAsFSsMDpa0-unsplash.jpg"
+              src="/mink-mingle-UAsFSsMDpa0-unsplash.jpg"
               alt="Mopsz kutya"
               style={{
                 position: "absolute",

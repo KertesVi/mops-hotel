@@ -37,7 +37,7 @@ export default function AboutUs() {
 
           <div className="flex-item-image">
             <img 
-              src='./src/assets/images/felipe-bustillo-vN24f5_zpiA-unsplash.jpg'
+              src='/felipe-bustillo-vN24f5_zpiA-unsplash.jpg'
               alt="AboutUs"
             />
           </div>
