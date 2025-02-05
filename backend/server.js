@@ -13,7 +13,10 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors({ origin: "mops-hotel.vercel.app" }));
+app.use(cors({ origin: "mops-hotel.vercel.app", // Allow only your frontend
+  methods: [ "POST"], // Allowed HTTP methods
+  credentials: true, // Allow cookies and authentication 
+}));
 
 const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGO_URI;
