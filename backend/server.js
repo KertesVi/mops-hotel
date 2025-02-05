@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-const port = process.env.PORT || 10000;
+const port = process.env.PORT;
 const mongoURI = process.env.MONGO_URI;
 
 
