@@ -15,7 +15,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
 app.use(cors());
 
-const port = process.env.PORT || 10000;
+const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGO_URI;
 
 
@@ -52,7 +52,7 @@ async function startServer() {
      await mongoose.connect(mongoURI);
       console.log("MongoDB connected");
   
-      app.listen(port, "0.0.0.0", () => {
+      app.listen(port, () => {
         console.log(`Server is running on port ${port}`);
       });
     } catch (error) {
