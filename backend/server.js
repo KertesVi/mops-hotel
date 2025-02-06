@@ -12,7 +12,7 @@ const app = express();
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors({ origin: "https://www.mopshotel.fun" }));
+app.use(cors({ origin: ["https://www.mopshotel.fun", "https://mops-hotel.vercel.app"] }));
 
 
 const port = process.env.PORT || 4000;
