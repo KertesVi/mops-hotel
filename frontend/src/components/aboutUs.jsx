@@ -14,7 +14,7 @@ export default function AboutUs() {
         <div className="flex-container">
 
           <div className="flex-item-text">
-            <p className="w3-xlarge">
+            <p >
           Mi egy természet kedvelő 4 fős család vagyunk, akik szívügyüknek
           tekintik az állatok szeretetét és gondozását. Családunk tagja egy fekete
           mopsz kutyus is, akivel már 10 év élvezzük a közös sétákat,

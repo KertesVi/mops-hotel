@@ -53,11 +53,12 @@ function App() {
           }}
         >
           <p
-            className="w3-jumbo"
+            className="w3-xxlarge"
             style={{
               fontSize: isMobile ? "6vw" : "2.5rem", // Adjust font size for mobile
               lineHeight: isMobile ? "1.2" : "1.5",
               marginBottom: "20px",
+              paddingTop: isMobile ? "70%" : 0,
               
             }}
           >
