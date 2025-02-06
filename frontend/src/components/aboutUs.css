@@ -1,74 +1,52 @@
-body, h1, h2, h3, h4, h5, h6 {
-  font-family: "Raleway", sans-serif;
+.about-container {
+  max-width: 1200px;
+  margin: auto;
+  padding: 40px 20px;
+  background-color: #f9f9f9;
 }
 
-body, html {
-  height: 100%;
-  line-height: 1.8;
-}
-
-.w3-container {
-  padding: 80px 40px;
+.about-header {
   text-align: center;
+  margin-bottom: 30px;
 }
 
-.flex-container {
+
+
+.about-content {
   display: flex;
-  justify-content: space-between;
   align-items: center;
-  flex-wrap: wrap; 
+  justify-content: space-between;
+  gap: 20px;
 }
 
-.flex-item-text, .flex-item-image {
+.about-text {
   flex: 1;
-  max-width: 50%; 
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #444;
 }
 
-.flex-item-text {
-  text-align: justify;
-  padding: 0 20px 20px;
-  margin: 20px;
-}
-
-.flex-item-image {
+.about-image-container {
+  flex: 1;
   display: flex;
   justify-content: center;
 }
 
-.flex-item-image img {
+.about-image {
   max-width: 100%;
   height: auto;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
 }
 
-/* Mobile-specific adjustments */
-@media only screen and (max-width: 768px) {
-  .flex-container {
-    flex-direction: column; /* Stack the text and image vertically on smaller screens */
-    align-items: center; /* Center-align the items */
+/* Responsive */
+@media (max-width: 768px) {
+  .about-content {
+    flex-direction: column;
+    text-align: center;
   }
 
-  .flex-item-text, .flex-item-image {
-    max-width: 100%; /* Allow both items to take full width on small screens */
-    padding: 10px;
-  }
-
-  .w3-jumbo {
-    font-size: 2rem; /* Smaller font size on smaller screens */
-  }
-
-  /* Maintain existing font style for text elements */
-  .w3-xlarge, .w3-jumbo {
-    font-family: inherit; /* Ensure the font family is inherited */
-    font-weight: inherit; /* Maintain the global font-weight */
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .w3-jumbo {
-    font-size: 1.5rem; /* Further reduce the font size for very small screens */
-  }
-
-  .w3-xlarge {
-    font-size: 1.2rem; /* Adjust text size for readability */
+  .about-text {
+    font-size: 1rem;
   }
 }

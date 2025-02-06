@@ -219,6 +219,12 @@ function Contact() {
                       className="w3-button w3-dark-grey w3-large"
                       type="submit"
                       disabled={isLoading}
+                      style={{
+                        padding: isMobile ? "12px 24px" : "14px 28px",
+                        fontSize: isMobile ? "1rem" : "1.2rem",
+                        backgroundColor: "rgba(0, 0, 0, 0.7)", // Semi-transparent button
+                        borderRadius: "8px",
+                      }}
                     >
                       {isLoading ? "Az üzenet küldés alatt..." : "Küldés"}
                     </button>

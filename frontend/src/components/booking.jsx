@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./booking.css";
 
 
@@ -16,8 +16,17 @@ function Booking() {
     checkOut: null
   });
   
+  
   const [isLoading, setIsLoading] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState(""); 
+   const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
+  
+    useEffect(() => {
+      const handleResize = () => setIsMobile(window.innerWidth < 768);
+      window.addEventListener("resize", handleResize);
+      return () => window.removeEventListener("resize", handleResize);
+    }, []);
+  
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -210,7 +219,14 @@ function Booking() {
                 </div>
 
                 {/* Submit Button */}
-                <button className="w3-button w3-dark-grey" type="submit">
+                <button className="w3-button w3-dark-grey" 
+                style={{
+                padding: isMobile ? "12px 24px" : "14px 28px",
+                fontSize: isMobile ? "1rem" : "1.2rem",
+                backgroundColor: "rgba(0, 0, 0, 0.7)", // Semi-transparent button
+                borderRadius: "8px",
+              }}
+               type="submit">
                   {isLoading ? "Az üzenet küldés alatt..." : "Érdeklődés küldése"}
                 </button>
               </form>
