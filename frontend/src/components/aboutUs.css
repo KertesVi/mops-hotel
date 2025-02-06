@@ -9,13 +9,13 @@ body, html {
 
 .w3-container {
   padding: 80px 40px;
+  text-align: center;
 }
 
 .flex-container {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  gap: 20px;
   flex-wrap: wrap; 
 }
 
@@ -33,12 +33,42 @@ body, html {
 .flex-item-image {
   display: flex;
   justify-content: center;
-  margin-top: 40px;
 }
 
 .flex-item-image img {
-  width: 100%; 
+  max-width: 100%;
   height: auto;
-  max-width: 90%; 
-  border-radius: 8px;
+}
+
+/* Mobile-specific adjustments */
+@media only screen and (max-width: 768px) {
+  .flex-container {
+    flex-direction: column; /* Stack the text and image vertically on smaller screens */
+    align-items: center; /* Center-align the items */
+  }
+
+  .flex-item-text, .flex-item-image {
+    max-width: 100%; /* Allow both items to take full width on small screens */
+    padding: 10px;
+  }
+
+  .w3-jumbo {
+    font-size: 2rem; /* Smaller font size on smaller screens */
+  }
+
+  /* Maintain existing font style for text elements */
+  .w3-xlarge, .w3-jumbo {
+    font-family: inherit; /* Ensure the font family is inherited */
+    font-weight: inherit; /* Maintain the global font-weight */
+  }
+}
+
+@media only screen and (max-width: 480px) {
+  .w3-jumbo {
+    font-size: 1.5rem; /* Further reduce the font size for very small screens */
+  }
+
+  .w3-xlarge {
+    font-size: 1.2rem; /* Adjust text size for readability */
+  }
 }
