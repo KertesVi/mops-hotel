@@ -8,6 +8,7 @@ function Contact() {
     message: "",
   });
 
+  const API_URL = "https://mops-hotel-v5sj.onrender.com";
   const [isLoading, setIsLoading] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState("");
   const [isMobile, setIsMobile] = useState(false);
@@ -44,7 +45,7 @@ function Contact() {
     setFeedbackMessage("");
 
     try {
-      const response = await fetch("/api/contactForm", {
+      const response = await fetch(`${API_URL}/api/contactForm`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

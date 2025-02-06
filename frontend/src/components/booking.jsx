@@ -16,7 +16,7 @@ function Booking() {
     checkOut: null
   });
   
-  
+  const API_URL = "https://mops-hotel-v5sj.onrender.com";
   const [isLoading, setIsLoading] = useState(false);
   const [feedbackMessage, setFeedbackMessage] = useState(""); 
    const [isMobile, setIsMobile] = useState(window.innerWidth < 768);
@@ -42,7 +42,7 @@ function Booking() {
     setFeedbackMessage("");
 
     try {
-      const response = await fetch('/api/bookingForm', {
+      const response = await fetch(`${API_URL}/api/bookingForm`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify(bookingData)
