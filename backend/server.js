@@ -6,17 +6,14 @@ import bodyParser from 'body-parser';
 import FormModel from "./db/formData.model.js";
 import BookindModel from './db/bookindData.model.js'; 
 
-
 dotenv.config(); 
 
 const app = express(); 
 app.use(express.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json());
-app.use(cors({ origin: process.env.FRONT_URL, // Allow only your frontend
-  methods: [ "POST"], // Allowed HTTP methods
-  credentials: true, // Allow cookies and authentication 
-}));
+app.use(cors({ origin: "https://www.mopshotel.fun" }));
+
 
 const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGO_URI;
