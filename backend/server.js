@@ -48,16 +48,18 @@ app.post("/api/bookingForm", async (req, res) => {
           
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {
-              console.error("❌ Email Error:", error); 
+              console.error("❌ Email Error:", error);
+              reject(error);
             } else {
               console.log('Email sent: ' + info.response);
+              resolve(info); 
             }
           });
         });
       }
     await sendEmail();
     res.status(201).json(savedData); 
-    
+
   } catch (error) {
     console.error("Error saving form data:", error);
     res.status(500).json({ error: 'An error occurred while saving the data' });
@@ -83,8 +85,10 @@ app.post("/api/contactForm", async (req, res) => {
           transporter.sendMail(mailOptions, function(error, info){
             if (error) {
               console.log(error);
+              reject(error);
             } else {
               console.log('Email sent: ' + info.response);
+              resolve(info);
             }
           });
         });

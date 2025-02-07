@@ -31,7 +31,8 @@ function Contact() {
       });
 
       if (response.ok) {
-        console.log("Response:", formData);
+        const result = await response.json();
+        console.log("Response:", result);
         setFeedbackMessage(
           "Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot."
         );

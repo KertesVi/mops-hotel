@@ -49,6 +49,8 @@ function Booking() {
       });
 
       if (response.ok) {
+        const result = await response.json();
+        console.log("Response:", result);
         setFeedbackMessage("Köszönjük! Üzenet sikeresen elküldve! Hamarosan felvesszük Önnel a kapcsolatot.");
         setBookingData({
           ownerName: "",
