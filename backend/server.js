@@ -44,6 +44,13 @@ const sendEmail = (mailOptions) => {
   });
 };
 
+const createMailOptions = (to, subject, text) => ({
+  from: yahooUser,
+  to: to,
+  subject: subject,
+  text: text,
+});
+
 
 app.post("/api/bookingForm", async (req, res) => {
   const bookingData = req.body;
@@ -85,14 +92,13 @@ app.post("/api/contactForm", async (req, res) => {
     const newFormData = new FormModel(formData);
     const savedData = await newFormData.save();
 
-      // Create the email for the user
+    
       const userMailOptions = createMailOptions(
         formData.email.toLowerCase(),
         'Érdeklődésed megkaptuk!',
         `Kedves ${formData.name}, Hamarosan felvesszük veled a kapcsolatot!`
       );
   
-      // Create the email for admin
       const adminMailOptions = createMailOptions(
         googleUser,
         'Érdeklődés érkezett!',
