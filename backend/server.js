@@ -36,13 +36,12 @@ app.post("/api/bookingForm", async (req, res) => {
   try {
     const newbookingData = new BookindModel(bookingData);
     const savedData = await newbookingData.save();
-    res.status(201).json(savedData); 
 
     var mailOptions = {
       from: yahooUser,
       to: bookingData.email,
-        subject: "Érdeklődés foglalásról beérkezett",
-      text: `Kedves ${bookingData.ownerName}, Hamarosan visszaigazoljuk foglalásod a szabad helyen függvényében!`
+      subject: "Érdeklődés foglalásról beérkezett",
+      text: `Kedves ${bookingData.ownerName}, Hamarosan visszaigazoljuk foglalásod a szabad helyek függvényében!`
     };
     
     transporter.sendMail(mailOptions, function(error, info){
@@ -52,6 +51,10 @@ app.post("/api/bookingForm", async (req, res) => {
         console.log('Email sent: ' + info.response);
       }
     });
+
+    res.status(201).json(savedData); 
+
+    
 
   } catch (error) {
     console.error("Error saving form data:", error);
@@ -65,7 +68,6 @@ console.log("Form Data:", formData);
   try {
     const newFormData = new FormModel(formData);
     const savedData = await newFormData.save();
-    res.status(201).json(savedData);
 
     var mailOptions = {
       from: yahooUser,
@@ -81,6 +83,10 @@ console.log("Form Data:", formData);
         console.log('Email sent: ' + info.response);
       }
     });
+
+    res.status(201).json(savedData);
+
+   
 
   } catch (error) {
     console.error("Error saving form data:", error);
