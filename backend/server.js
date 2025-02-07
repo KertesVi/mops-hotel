@@ -20,6 +20,7 @@ const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGO_URI;
 const yahooPass = process.env.YAHOO_PASS;
 const yahooUser = process.env.YAHOO_USER;
+const googleUser = process.env.GOOGLE_USER;
 
 var transporter = nodemailer.createTransport({
   service: 'yahoo',
@@ -55,6 +56,29 @@ app.post("/api/bookingForm", async (req, res) => {
               resolve(info); 
             }
           });
+
+          var mail2Options = {
+            from: yahooUser,
+            to: googleUser,
+            subject: 'Érdeklődés érkezett!',
+            text: `Gazdi név: ${bookingData.ownerName}, Email: ${bookingData.email}, 
+                    Telefonszám: ${bookingData.phone}, Kutyus neve: ${bookingData.petName1}, 
+                    Kutyus életkora: ${bookingData.petAge1}, Kutyus neve: ${bookingData.petName2}, 
+                    Kutyus életkora: ${bookingData.petAge2}, Vendégek száma: ${bookingData.numberOfGuests}, 
+                    Érkezés: ${bookingData.checkIn}, Távozás: ${bookingData.checkOut}`,
+          };
+          
+          transporter.sendMail(mail2Options, function(error, info){
+            if (error) {
+              console.log(error);
+              reject(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+              resolve(info);
+            }
+          });
+
+
         });
       }
     await sendEmail();
@@ -91,6 +115,25 @@ app.post("/api/contactForm", async (req, res) => {
               resolve(info);
             }
           });
+
+          var mail2Options = {
+            from: yahooUser,
+            to: googleUser,
+            subject: 'Érdeklődés érkezett!',
+            text: `Név: ${formData.name}, Email: ${formData.email}, Üzenet: ${formData.message}`,
+          };
+          
+          transporter.sendMail(mail2Options, function(error, info){
+            if (error) {
+              console.log(error);
+              reject(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+              resolve(info);
+            }
+          });
+
+
         });
       };
     await sendEmail(); 
