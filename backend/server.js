@@ -30,6 +30,20 @@ var transporter = nodemailer.createTransport({
   }
 });
 
+const sendEmail = (mailOptions) => {
+  return new Promise((resolve, reject) => {
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        console.error(error);
+        reject(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+        resolve(info);
+      }
+    });
+  });
+};
+
 
 app.post("/api/bookingForm", async (req, res) => {
   const bookingData = req.body;
@@ -38,50 +52,24 @@ app.post("/api/bookingForm", async (req, res) => {
     const newbookingData = new BookindModel(bookingData);
     const savedData = await newbookingData.save();
 
-    const sendEmail = async () => {
-      return new Promise((resolve, reject) => {
-          var mailOptions = {
-            from: yahooUser,
-            to: bookingData.email,
-            subject: "Érdeklődés foglalásról beérkezett",
-            text: `Kedves ${bookingData.ownerName}, Hamarosan visszaigazoljuk foglalásod a szabad helyek függvényében!`
-          };
-          
-          transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-              console.error("❌ Email Error:", error);
-              reject(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-              resolve(info); 
-            }
-          });
+    const userMailOptions = createMailOptions(
+      bookingData.email.toLowerCase(),
+      'Érdeklődésed megkaptuk!',
+      `Kedves ${bookingData.ownerName}, Hamarosan felvesszük veled a kapcsolatot!`
+    );
 
-          var mail2Options = {
-            from: yahooUser,
-            to: googleUser,
-            subject: 'Érdeklődés érkezett!',
-            text: `Gazdi név: ${bookingData.ownerName}, Email: ${bookingData.email}, 
-                    Telefonszám: ${bookingData.phone}, Kutyus neve: ${bookingData.petName1}, 
-                    Kutyus életkora: ${bookingData.petAge1}, Kutyus neve: ${bookingData.petName2}, 
-                    Kutyus életkora: ${bookingData.petAge2}, Vendégek száma: ${bookingData.numberOfGuests}, 
-                    Érkezés: ${bookingData.checkIn}, Távozás: ${bookingData.checkOut}`,
-          };
-          
-          transporter.sendMail(mail2Options, function(error, info){
-            if (error) {
-              console.log(error);
-              reject(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-              resolve(info);
-            }
-          });
-
-
-        });
-      }
-    await sendEmail();
+    // Create the email for admin
+    const adminMailOptions = createMailOptions(
+      googleUser,
+      'Érdeklődés érkezett!',
+      `Név: ${bookingData.ownerName}, Email: ${bookingData.email}, Telefonszám: ${bookingData.phone}, 
+      Kutyus neve: ${bookingData.petName1}, Kutyus életkora: ${bookingData.petAge1}, 
+      Kutyus neve: ${bookingData.petName2}, Kutyus életkora: ${bookingData.petAge2}, 
+      Vendégek száma: ${bookingData.numberOfGuests}, Érkezés: ${bookingData.checkIn}, 
+      Távozás: ${bookingData.checkOut}`
+    );
+    
+  await Promise.all([sendEmail(userMailOptions), sendEmail(adminMailOptions)]);
     res.status(201).json(savedData); 
 
   } catch (error) {
@@ -97,46 +85,21 @@ app.post("/api/contactForm", async (req, res) => {
     const newFormData = new FormModel(formData);
     const savedData = await newFormData.save();
 
-    const sendEmail = async () => {
-      return new Promise((resolve, reject) => {
-          var mailOptions = {
-            from: yahooUser,
-            to: formData.email.toLowerCase(),
-            subject: 'Érdeklődésed megkaptuk!',
-            text: `Kedves ${formData.name}, Hamarosan felvesszük veled a kapcsolatot!`
-          };
-          
-          transporter.sendMail(mailOptions, function(error, info){
-            if (error) {
-              console.log(error);
-              reject(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-              resolve(info);
-            }
-          });
+      // Create the email for the user
+      const userMailOptions = createMailOptions(
+        formData.email.toLowerCase(),
+        'Érdeklődésed megkaptuk!',
+        `Kedves ${formData.name}, Hamarosan felvesszük veled a kapcsolatot!`
+      );
+  
+      // Create the email for admin
+      const adminMailOptions = createMailOptions(
+        googleUser,
+        'Érdeklődés érkezett!',
+        `Név: ${formData.name}, Email: ${formData.email}, Üzenet: ${formData.message}`
+      );
 
-          var mail2Options = {
-            from: yahooUser,
-            to: googleUser,
-            subject: 'Érdeklődés érkezett!',
-            text: `Név: ${formData.name}, Email: ${formData.email}, Üzenet: ${formData.message}`,
-          };
-          
-          transporter.sendMail(mail2Options, function(error, info){
-            if (error) {
-              console.log(error);
-              reject(error);
-            } else {
-              console.log('Email sent: ' + info.response);
-              resolve(info);
-            }
-          });
-
-
-        });
-      };
-    await sendEmail(); 
+    await Promise.all([sendEmail(userMailOptions), sendEmail(adminMailOptions)]); 
     res.status(201).json(savedData);
     
   } catch (error) {
