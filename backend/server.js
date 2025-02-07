@@ -37,25 +37,27 @@ app.post("/api/bookingForm", async (req, res) => {
     const newbookingData = new BookindModel(bookingData);
     const savedData = await newbookingData.save();
 
-    var mailOptions = {
-      from: yahooUser,
-      to: bookingData.email,
-      subject: "Érdeklődés foglalásról beérkezett",
-      text: `Kedves ${bookingData.ownerName}, Hamarosan visszaigazoljuk foglalásod a szabad helyek függvényében!`
-    };
-    
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.error("❌ Email Error:", error); 
-      } else {
-        console.log('Email sent: ' + info.response);
+    const sendEmail = async () => {
+      return new Promise((resolve, reject) => {
+          var mailOptions = {
+            from: yahooUser,
+            to: bookingData.email,
+            subject: "Érdeklődés foglalásról beérkezett",
+            text: `Kedves ${bookingData.ownerName}, Hamarosan visszaigazoljuk foglalásod a szabad helyek függvényében!`
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.error("❌ Email Error:", error); 
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+        });
       }
-    });
-
+    await sendEmail();
     res.status(201).json(savedData); 
-
     
-
   } catch (error) {
     console.error("Error saving form data:", error);
     res.status(500).json({ error: 'An error occurred while saving the data' });
@@ -64,30 +66,32 @@ app.post("/api/bookingForm", async (req, res) => {
 
 app.post("/api/contactForm", async (req, res) => {
   const formData = req.body;
-console.log("Form Data:", formData);
+
   try {
     const newFormData = new FormModel(formData);
     const savedData = await newFormData.save();
 
-    var mailOptions = {
-      from: yahooUser,
-      to: formData.email.toLowerCase(),
-      subject: 'Érdeklődésed megkaptuk!',
-      text: `Kedves ${formData.name}, Hamarosan felvesszük veled a kapcsolatot!`
-    };
-    
-    transporter.sendMail(mailOptions, function(error, info){
-      if (error) {
-        console.log(error);
-      } else {
-        console.log('Email sent: ' + info.response);
-      }
-    });
-
+    const sendEmail = async () => {
+      return new Promise((resolve, reject) => {
+          var mailOptions = {
+            from: yahooUser,
+            to: formData.email.toLowerCase(),
+            subject: 'Érdeklődésed megkaptuk!',
+            text: `Kedves ${formData.name}, Hamarosan felvesszük veled a kapcsolatot!`
+          };
+          
+          transporter.sendMail(mailOptions, function(error, info){
+            if (error) {
+              console.log(error);
+            } else {
+              console.log('Email sent: ' + info.response);
+            }
+          });
+        });
+      };
+    await sendEmail(); 
     res.status(201).json(savedData);
-
-   
-
+    
   } catch (error) {
     console.error("Error saving form data:", error);
     res.status(500).json({ error: "An error occurred while saving the data" });
