@@ -2,6 +2,7 @@ import express from 'express';
 import mongoose from 'mongoose';
 import dotenv from 'dotenv';
 import cors from 'cors';
+import nodemailer from 'nodemailer';
 import bodyParser from 'body-parser';
 import FormModel from "./db/formData.model.js";
 import BookindModel from './db/bookindData.model.js'; 
@@ -17,6 +18,16 @@ app.use(cors({ origin: ["https://www.mopshotel.fun", "https://mops-hotel.vercel.
 
 const port = process.env.PORT || 4000;
 const mongoURI = process.env.MONGO_URI;
+const yahooPass = process.env.YAHOO_PASS;
+const yahooUser = process.env.YAHOO_USER;
+
+var transporter = nodemailer.createTransport({
+  service: 'yahoo',
+  auth: {
+    user: yahooUser,
+    pass: yahooPass
+  }
+});
 
 
 app.post("/api/bookingForm", async (req, res) => {
@@ -26,6 +37,22 @@ app.post("/api/bookingForm", async (req, res) => {
     const newbookingData = new BookindModel(bookingData);
     const savedData = await newbookingData.save();
     res.status(201).json(savedData); 
+
+    var mailOptions = {
+      from: yahooUser,
+      to: bookingData.email,
+        subject: "Érdeklődés foglalásról beérkezett",
+      text: `Kedves ${bookingData.ownerName}, Hamarosan visszaigazoljuk foglalásod a szabad helyen függvényében!`
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.error("❌ Email Error:", error); 
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
   } catch (error) {
     console.error("Error saving form data:", error);
     res.status(500).json({ error: 'An error occurred while saving the data' });
@@ -34,11 +61,27 @@ app.post("/api/bookingForm", async (req, res) => {
 
 app.post("/api/contactForm", async (req, res) => {
   const formData = req.body;
-
+console.log("Form Data:", formData);
   try {
     const newFormData = new FormModel(formData);
     const savedData = await newFormData.save();
     res.status(201).json(savedData);
+
+    var mailOptions = {
+      from: yahooUser,
+      to: formData.email.toLowerCase(),
+      subject: 'Érdeklődésed megkaptuk!',
+      text: `Kedves ${formData.name}, Hamarosan felvesszük veled a kapcsolatot!`
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info){
+      if (error) {
+        console.log(error);
+      } else {
+        console.log('Email sent: ' + info.response);
+      }
+    });
+
   } catch (error) {
     console.error("Error saving form data:", error);
     res.status(500).json({ error: "An error occurred while saving the data" });
