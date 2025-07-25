@@ -21,15 +21,7 @@ function Footer() {
     <>
       <footer className="w3-padding-12 w3-black w3-bottom w3-center w3-margin-top">
         <p>
-          Az oldalt készítette{" "}
-          <a
-            href="https://devopsjourney.cloud"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="w3-hover-text-green"
-          >
-            Kertész Viktória
-          </a>
+          Az oldalt készítette{" "}Kertész Viktória
         </p>
       </footer>
     </>
